@@ -1,0 +1,106 @@
+---
+title: "Bayer Large Scale Dicamba Volatility Study"
+subtitle: ""
+address: University of Wisconsin-Madison
+author: "| Rodrigo Werle^1^, Ryan DeWerff^2^, Nick Arneson^3^, Max Oliveira^4^, Sarah Striegel^5^, Victor Ribeiro^5^, Nikola Arsenijevic^5^, Felipe Faleco^5^, Kolby Grint^5^, Haleigh Ortmeier-Clarke^5^ and  Madison Mels^6^ \n| ^1^ Principal
+  Investigator\n| ^2^ Research Technician  ^3^ Outreach Research and Extension Associate ^4^ Postdoctoral Research Associate ^5^ Graduate Student ^6^ Undergraduate Research Assistant \n"
+
+# Change the following lines only if you know what you are doing:
+#date: '`r format(Sys.Date(), "%d\\. %m\\. %Y")`'  # today
+fontfamily: lmodern
+fontsize: 12pt
+graphics: null
+papersize: 
+geometry: margin=1.0in
+classoption:
+  - a4paper
+  - oneside
+  #- more options here, see rmarkdown documentation 
+numbersections: yes
+header-includes:
+- \usepackage{pdflscape}
+- \newcommand{\blandscape}{\begin{landscape}}
+- \newcommand{\elandscape}{\end{landscape}}
+- \usepackage{booktabs}
+- \usepackage{multirow}
+- \usepackage{float}
+fig_caption: yes
+keep_tex: yes
+output: pdf_document
+---
+
+
+
+\newpage 
+\tableofcontents 
+\newpage 
+\listoffigures
+\newpage 
+\listoftables
+\newpage
+
+
+# Methods
+
+•	Soybean variety:
+
+•	Soybean seed rate: 
+
+•	Soybean row width: 
+
+•	Soybean planting date:
+
+•	PRE-herbicide: 
+
+•	PRE-herbicide application: 
+
+•	Herbicide treatments application (Flat): 
+
+•	Soybean stage at flat application: 
+
+•	Soybean height at flat application: 
+
+•	Flat removal from low-tunnel: 
+
+•	Results presented at 21 DAT (days after treatment)
+
+•	Photos taken at 21 DAT  
+
+\newpage
+
+```{r include=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(drc)
+```
+```{r include=FALSE}
+Data <- read_csv("Dicamba.csv") 
+glimpse(Data)
+```
+
+```{r include=FALSE}
+No <- Data %>% 
+  filter(Location == "N" | Row != 1) 
+
+
+N <- drm(Injury ~ Distancem, Type, fct = l3(), data=No)
+summary(N)
+```
+
+
+```{r fig.height=6, fig.width=6, warning=FALSE}
+plot(N, main="North", sub="University od Wisconsin-Madison Weed Science", xlim=c(0,80), ylim=c(0,100),
+     type="average", log="", col=c(1,2),
+     cex=1.2, cex.lab=1.5, cex.axis=1.1, pch=c(1,16), lwd=3, xlab="Distance (m)", ylab="Non-DT soybean injury")
+```
+
+
+
+
+
+
+
+
+
+
+

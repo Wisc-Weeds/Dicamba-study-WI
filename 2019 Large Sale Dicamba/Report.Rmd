@@ -1,0 +1,361 @@
+---
+title: "Bayer Large Scale Dicamba Volatility Study"
+subtitle: ""
+address: University of Wisconsin-Madison
+author: "| Rodrigo Werle^1^, Ryan DeWerff^2^, Nick Arneson^3^, Max Oliveira^4^, Sarah Striegel^5^, Victor Ribeiro^5^, Nikola Arsenijevic^5^, Felipe Faleco^5^, Kolby Grint^5^, Haleigh Ortmeier-Clarke^5^ and  Madison Mels^6^ \n| ^1^ Principal
+  Investigator\n| ^2^ Research Technician  ^3^ Outreach Research and Extension Associate ^4^ Postdoctoral Research Associate ^5^ Graduate Student ^6^ Undergraduate Research Assistant \n"
+
+# Change the following lines only if you know what you are doing:
+#date: '`r format(Sys.Date(), "%d\\. %m\\. %Y")`'  # today
+fontfamily: lmodern
+fontsize: 12pt
+graphics: null
+papersize: 
+geometry: margin=1.0in
+classoption:
+  - a4paper
+  - oneside
+  #- more options here, see rmarkdown documentation 
+numbersections: yes
+header-includes:
+- \usepackage{pdflscape}
+- \newcommand{\blandscape}{\begin{landscape}}
+- \newcommand{\elandscape}{\end{landscape}}
+- \usepackage{booktabs}
+- \usepackage{multirow}
+- \usepackage{float}
+- \usepackage{placeins}
+fig_caption: yes
+keep_tex: yes
+output: pdf_document
+---
+
+```{r eval=FALSE, fig.align="center", fig.pos='h', include=FALSE, out.width='100%'}
+knitr::include_graphics("Logo.png")
+```
+
+\newpage 
+\tableofcontents 
+\newpage 
+\listoffigures
+\newpage 
+\listoftables
+\newpage
+
+
+# Methods
+
+## Plant Material and Area Management
+
+•	Soil test: 
+*pH*: 6.9
+*OM*: 3.3%
+*P*: 53
+*K*: 192 
+
+•	Soybean variety: AG26X8, AG2636RR2Y
+
+•	Soybean seed rate: 154,000 seeds acre^-1^
+
+•	Soybean row width: 30 in
+
+•	Soybean planting date: 6/3/2019
+
+•	Herbicide application:  
+*PRE*: Tomahawk 5 @ 28 oz acre^-1^ + Matador-S @ 22 oz acre^-1^ (6/4/2019)  
+
+*POST*:  Volunteer @ 12 oz acre^-1^ + Roundup PowerMax @ 28 oz acre^-1^ (6/27/2019)  
+
+•	POST herbicide treatment (Xtendimax) application: 7/14/2019
+
+•	Soybean stage at POST application date: V5/V6
+
+•	Results presented at 21 DAT (days after treatment)
+
+•	Photos taken at 21 DAT  
+
+
+## Modeling
+
+Non-dicamba resistant (DR) **soybean injury (%)** (visual data) was collected from three soybean plant distance^-1^ at 21 DAT. Data analysis was performed with three-parameter logistic model (Equation 1) for fitting Non-DT soybean injury (%) with distance from the treated area with dicamba. 
+
+Equation 1: $$Y= \frac{d}{(1 + exp[b(logx - loge)]} $$
+
+where *Y* is the Non-DT soybean injury (%), *x* is the distance (m) from the dicamba treated area. in The parameter *d* is the upper limit (asymptote), *b* is the slope and the parameter *e* is the ED50 (effective *x* that causes 50% reduction in *Y*). Data from 21 DAT are presented.
+
+Non-Xtend **soybean height** (cm) was collected from thee soybean plant distance^-1^ at 21 DAT. A linear model was fitted to the data (Equation 2).
+
+Equation 2: $$Y= A + bx $$
+
+where *Y* is the Non-DT soybean height (cm), *b* is the slope and *x* is the distance (m) from the dicamba treated area.
+
+
+\newpage
+
+```{r include=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(drc)
+```
+
+```{r include=FALSE}
+Data <- read_csv("Dicamba.csv") 
+glimpse(Data)
+```
+
+# Results
+
+## Weather data
+
+\begin{table}[ht!]
+\centering
+\caption{Weather data of the three days after POST herbicide treatment in the large scale volatility study at the University of Wisconsin-Madison.}
+\label{tab:my-table}
+\begin{tabular}{llllllll}
+\hline
+\multirow{2}{*}{Date} & \multicolumn{3}{c}{Relative Humidity (\%)} & \multicolumn{3}{c}{Temperature (F)} & \multirow{2}{*}{Rainfall (in)} \\ \cline{2-7}
+                      & Average         & Low        & High        & Average      & Low      & High      &                                \\ \hline
+07/14                 & 69              & 51         & 90          & 77           & 63       & 89        & 0                              \\
+07/15                 & 76              & 53         & 96          & 77           & 67       & 89        & 0.01                           \\
+07/16                 & 81              & 60         & 96          & 80           & 67       & 89        & 0.04                           \\ \hline
+\end{tabular}
+\end{table}
+
+
+\begin{landscape}
+
+
+
+
+```{r, echo=FALSE, fig.cap="Wind-rose of frequency and speed averaged three days after dicamba treatment application at the University of Wisconsin-Madison", out.width = '100%', fig.align="center", fig.retina = 2, fig.pos='h'}
+knitr::include_graphics("Wind.pdf")
+```
+
+
+```{r, echo=FALSE, fig.cap="Wind-rose of frequency and speed in each of the three days after dicamba treatment application at the University of Wisconsin-Madison", out.width = '100%', fig.align="center", fig.retina = 2, fig.pos='h'}
+knitr::include_graphics("Wind2.pdf")
+```
+
+\end{landscape}
+
+\newpage 
+\pagebreak
+\FloatBarrier
+
+## Modeling injury on non-DT soybean
+
+### East
+
+```{r, echo=FALSE, fig.cap="Non-DT soybean injury with distance from the treated block at East direction 21 DAT.", out.width = '100%', fig.align="center", fig.retina = 2, fig.pos='h'}
+knitr::include_graphics("East.pdf")
+```
+
+
+\begin{table}[h!]
+\centering
+\caption{Parameter estimation of non-DT soybean injury in the East direction from the large scale volatility study at the University of Wisconsin-Madison.}
+\label{tab:my-table}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Parameter                         & Type        & Estimate (m) & Standart error & P-value \\ \midrule
+\multirow{2}{*}{Slope}            & Covered     & 1.9          & 0.6            & 0.00    \\
+                                  & Non-covered & 2.6          & 0.5            & 0.00    \\
+\multirow{2}{*}{Upper limit}      & Covered     & 9.6          & 2.8            & 0.00    \\
+                                  & Non-covered & 12.0         & 1.3            & 0.00    \\
+\multirow{2}{*}{Inflection point} & Covered     & 3.7          & 1.4            & 0.06    \\
+                                  & Non-covered & 6.0          & 0.8            & 0.00    \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\newpage 
+\pagebreak
+\FloatBarrier
+
+```{r, echo=FALSE, fig.cap="Non-DT soybean height with distance from the treated block at North direction 21 DAT.", out.width = '100%', fig.align="center", fig.retina = 2, fig.pos='h'}
+knitr::include_graphics("EastH.pdf")
+```
+
+\begin{table}[ht!]
+\centering
+\caption{Parameter estimation of non-DT soybean height in the East direction from the large scale volatility study at the University of Wisconsin-Madison.}
+\label{tab:my-table}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Parameter                  & Type        & Estimate & Standard error & P-value \\ \midrule
+\multirow{2}{*}{Intercept} & Covered     & 63.1     & 0.9            & 0.00    \\
+                           & Non-covered & 67.4     & 0.6            & 0.00    \\
+\multirow{2}{*}{Slope}     & Covered     & -0.02    & 0.1            & 0.79    \\
+                           & Non-covered & -0.08    & 0.0            & 0.01    \\ \bottomrule
+\end{tabular}
+\end{table}
+
+```{r, echo=FALSE, fig.cap="Non-DT soybean injury under the covered area at East direction 21 DAT.", out.width = '100%', fig.align="center", fig.retina = 2}
+knitr::include_graphics("EastCOV.pdf")
+```
+
+```{r, echo=FALSE, fig.cap="Non-DT soybean injury in the Non-covered area at East direction 21 DAT.", out.width = '100%', fig.align="center", fig.retina = 2}
+knitr::include_graphics("EastUNC.pdf")
+```
+
+\newpage 
+\pagebreak
+\FloatBarrier
+
+
+### North
+
+```{r, echo=FALSE, fig.cap="Non-DT soybean injury with distance from the treated block at North direction 21 DAT.", out.width = '100%', fig.align="center", fig.retina = 2, fig.pos='h'}
+knitr::include_graphics("North.pdf")
+```
+
+\begin{table}[ht!]
+\centering
+\caption{Parameter estimation of non-DT soybean injury in the North direction from the large scale volatility study at the University of Wisconsin-Madison.}
+\label{tab:my-table}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Parameter                         & Type        & Estimate (m) & Standard error & P-value \\ \midrule
+\multirow{2}{*}{Slope}            & Covered     & 1.3          & 0.4            & 0.00    \\
+                                  & Non-covered & 2.2          & 0.2            & 0.00    \\
+\multirow{2}{*}{Upper limit}      & Covered     & 32.7         & 10.1           & 0.00    \\
+                                  & Non-covered & 47.0         & 2.1            & 0.00    \\
+\multirow{2}{*}{Inflection point} & Covered     & 3.6          & 1.9            & 0.06    \\
+                                  & Non-covered & 9.7          & 0.6            & 0.00    \\ \bottomrule
+\end{tabular}
+\end{table}
+
+
+```{r, echo=FALSE, fig.cap="Non-DT soybean height with distance from the treated block at North direction 21 DAT.", out.width = '100%', fig.align="center", fig.retina = 2, fig.pos='h'}
+knitr::include_graphics("NorthH.pdf")
+```
+
+
+\begin{table}[ht!]
+\centering
+\caption{Parameter estimation of non-DT soybean height in the North direction from the large scale volatility study at the University of Wisconsin-Madison.}
+\label{tab:my-table}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Parameter                  & Type        & Estimate & Standard error & P-value \\ \midrule
+\multirow{2}{*}{Intercept} & Covered     & 68.3     & 1.2            & 0.00    \\
+                           & Non-covered & 63.1     & 0.8            & 0.00    \\
+\multirow{2}{*}{Slope}     & Covered     & -0.5     & 0.1            & 0.00    \\
+                           & Non-covered & 0.1      & 0.0            & 0.00    \\ \bottomrule
+\end{tabular}
+\end{table}
+
+
+
+
+
+
+
+
+
+```{r, echo=FALSE, fig.cap="Non-DT soybean injury under the covered area at North direction 21 DAT.", out.width = '100%', fig.align="center", fig.retina = 2}
+knitr::include_graphics("North2.pdf")
+```
+
+\newpage 
+\pagebreak
+\FloatBarrier
+
+
+### West
+
+```{r, echo=FALSE, fig.cap="Non-DT soybean injury with distance from the treated block at West direction 21 DAT.", out.width = '100%', fig.align="center", fig.retina = 2, fig.pos='h'}
+knitr::include_graphics("West.pdf")
+```
+
+\begin{table}[ht!]
+\centering
+\caption{Parameter estimation of non-DT soybean injury in the West direction from the large scale volatility study at the University of Wisconsin-Madison.}
+\label{tab:my-table}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Parameter                         & Type        & Estimate (m) & Standart error & P-value \\ \midrule
+\multirow{2}{*}{Slope}            & Covered     & 0.4          & 0.6            & 0.53    \\
+                                  & Non-covered & 1.5          & 0.1            & 0.00    \\
+\multirow{2}{*}{Upper limit}      & Covered     & 4.1          & 17.8           & 0.81    \\
+                                  & Non-covered & 55.6         & 9.7            & 0.00    \\
+\multirow{2}{*}{Inflection point} & Covered     & 0.08         & 1.2            & 0.94    \\
+                                  & Non-covered & 2.01         & 0.5            & 0.00    \\ \bottomrule
+\end{tabular}
+\end{table}
+
+
+```{r, echo=FALSE, fig.cap="Non-DT soybean height with distance from the treated block at North direction 21 DAT.", out.width = '100%', fig.align="center", fig.retina = 2, fig.pos='h'}
+knitr::include_graphics("WestH.pdf")
+```
+
+
+\begin{table}[ht!]
+\centering
+\caption{Parameter estimation of non-DT soybean height in the West direction from the large scale volatility study at the University of Wisconsin-Madison.}
+\label{tab:my-table}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Parameter                  & Type        & Estimate & Standard error & P-value \\ \midrule
+\multirow{2}{*}{Intercept} & Covered     & 63.1     & 0.9            & 0.00    \\
+                           & Non-covered & 66.3     & 0.8            & 0.00    \\
+\multirow{2}{*}{Slope}     & Covered     & -0.02    & 0.1            & 0.79    \\
+                           & Non-covered & -0.2     & 0.04           & 0.00    \\ \bottomrule
+\end{tabular}
+\end{table}
+
+
+
+```{r, echo=FALSE, fig.cap="Non-DT soybean injury at West direction 21 DAT.", out.width = '100%', fig.align="center", fig.retina = 2}
+knitr::include_graphics("West2.pdf")
+```
+
+```{r, echo=FALSE, fig.cap="Non-DT soybean injury at West direction 21 DAT.", out.width = '100%', fig.align="center", fig.retina = 2}
+knitr::include_graphics("West3.pdf")
+```
+
+\newpage
+\pagebreak
+\FloatBarrier
+
+
+### South
+
+```{r, echo=FALSE, fig.cap="Non-DT soybean injury with distance from the treated block at South direction 21 DAT.", out.width = '100%', fig.align="center", fig.retina = 2, fig.pos='h'}
+knitr::include_graphics("South.pdf")
+```
+
+
+```{r, echo=FALSE, fig.cap="Non-DT soybean height with distance from the treated block at North direction 21 DAT.", out.width = '100%', fig.align="center", fig.retina = 2, fig.pos='h'}
+knitr::include_graphics("SouthH.pdf")
+```
+
+\FloatBarrier
+
+\begin{table}[h!]
+\centering
+\caption{Parameter estimation of non-DT soybean height in the South direction from the large scale volatility study at the University of Wisconsin-Madison.}
+\label{tab:my-table}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Parameter                  & Type        & Estimate & Standard error & P-value \\ \midrule
+\multirow{2}{*}{Intercept} & Covered     & 79.5     & 1.3            & 0.00    \\
+                           & Non-covered & 75.3     & 0.8            & 0.00    \\
+\multirow{2}{*}{Slope}     & Covered     & -0.2     & 0.1            & 0.06    \\
+                           & Non-covered & -0.2     & 0.04           & 0.00    \\ \bottomrule
+\end{tabular}
+\end{table}
+
+
+
+```{r, echo=FALSE, fig.cap="Non-DT soybean injury under the covered area at South direction 21 DAT.", out.width = '100%', fig.align="center", fig.retina = 2}
+knitr::include_graphics("SouthCOV.pdf")
+```
+
+
+```{r, echo=FALSE, fig.cap="Non-DT soybean injury in the Non-covered area at South direction 21 DAT.", out.width = '100%', fig.align="center", fig.retina = 2}
+knitr::include_graphics("SouthUNC.pdf")
+```
+
+
+
+
